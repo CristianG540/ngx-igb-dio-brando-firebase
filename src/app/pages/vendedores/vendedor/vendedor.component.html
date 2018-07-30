@@ -1,0 +1,21 @@
+<nb-card>
+  <nb-card-header>
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-outline-primary btn-icon btn-tn" (click)="back()" ><i class="ion-chevron-left"></i></button>
+      </div>
+      <div class="col">
+          Ordenes - <b>{{ _vendedor }}</b>
+      </div>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onUserRowSelect($event)">
+    </ng2-smart-table>
+    <div class="row text-center">
+      <div class="col">
+        <button type="button" class="btn btn-hero-primary btn-demo" (click)="verUbicacion()">Ubicacion</button>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
