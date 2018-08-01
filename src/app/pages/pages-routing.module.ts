@@ -1,11 +1,11 @@
-import { RouterModule, Routes } from '@angular/router';
-import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router'
+import { NgModule } from '@angular/core'
 
-import { PagesComponent } from './pages.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { VendedoresComponent } from './vendedores/vendedores.component';
-import { VendedorComponent } from './vendedores/vendedor/vendedor.component';
-import { OrdenComponent } from './orden/orden.component';
+import { PagesComponent } from './pages.component'
+import { DashboardComponent } from './dashboard/dashboard.component'
+import { VendedoresComponent } from './vendedores/vendedores.component'
+import { VendedorComponent } from './vendedores/vendedor/vendedor.component'
+import { OrdenComponent } from './orden/orden.component'
 
 const routes: Routes = [{
   path: '',
@@ -13,31 +13,31 @@ const routes: Routes = [{
   children: [
     {
       path: 'dashboard',
-      component: VendedoresComponent,
+      component: VendedoresComponent
     },
     {
       path: 'ordenes/:vendedor',
-      component: VendedorComponent,
+      component: VendedorComponent
     },
     {
       path: 'ordenes/:vendedor/:id',
-      component: OrdenComponent,
+      component: OrdenComponent
     },
     {
       path: 'clientes',
-      loadChildren: './clientes/clientes.module#ClientesModule',
+      loadChildren: './clientes/clientes.module#ClientesModule'
     },
     {
       path: '',
       redirectTo: 'dashboard',
-      pathMatch: 'full',
-    },
-  ],
-}];
+      pathMatch: 'full'
+    }
+  ]
+}]
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class PagesRoutingModule {
 }

@@ -1,16 +1,16 @@
-import { Component } from '@angular/core';
-import { LocalDataSource } from 'ng2-smart-table';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core'
+import { LocalDataSource } from 'ng2-smart-table'
+import { Router } from '@angular/router'
 
 // Services
-import { VendedorService } from '../../@core/data/vendedor/vendedor.service';
-import { UtilsService } from '../../@core/utils/utils.service';
+import { VendedorService } from '../../@core/data/vendedor/vendedor.service'
+import { UtilsService } from '../../@core/utils/utils.service'
 
 @Component({
   selector: 'ngx-vendedores',
-  templateUrl: './vendedores.component.html',
+  templateUrl: './vendedores.component.html'
 })
-export class VendedoresComponent  {
+export class VendedoresComponent {
 
   /**
    * objeto de configuracion para ng2-smart-table
@@ -20,94 +20,95 @@ export class VendedoresComponent  {
     actions : {
       add: false,
       edit : false,
-      delete : false,
+      delete : false
     },
     add: {
       addButtonContent: '<i class="nb-plus"></i>',
       createButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
+      cancelButtonContent: '<i class="nb-close"></i>'
     },
     edit: {
       editButtonContent: '<i class="nb-edit"></i>',
       saveButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
+      cancelButtonContent: '<i class="nb-close"></i>'
     },
     delete: {
       deleteButtonContent: '<i class="nb-trash"></i>',
-      confirmDelete: true,
+      confirmDelete: true
     },
     columns: {
       vendedor: {
         title: 'Usuario',
-        type: 'string',
+        type: 'string'
       },
       idAsesor: {
         title: 'Id Asesor',
-        type: 'string',
+        type: 'string'
       },
       numOrdenes: {
         title: 'Ordenes',
-        type: 'number',
+        type: 'number'
       },
       numOrdenesErr: {
         title: 'Errores',
-        type: 'html',
+        type: 'html'
       },
       numOrdenesPend: {
         title: 'Pendientes',
-        type: 'number',
+        type: 'number'
       },
       numOrdenesVistas: {
         title: 'Revisados',
-        type: 'html',
-      },
-    },
-  };
-  private source: LocalDataSource = new LocalDataSource();
+        type: 'html'
+      }
+    }
+  }
+  private source: LocalDataSource = new LocalDataSource()
   // Variable global de prettyprint
-  private readonly PW = window['pleaseWait'];
+  private readonly PW = window['pleaseWait']
 
   constructor (
     private vendedoresService: VendedorService,
     private util: UtilsService,
-    private router: Router,
+    private router: Router
   ) {
     if (this.vendedoresService.lkIsLoaded) {
-      this.source.load(this.vendedoresService.allOrdenesInfo);
+      this.source.load(this.vendedoresService.allOrdenesInfo)
     } else {
-      const loading_screen: any = this.util.showPleaseWait();
+      // tslint:disable-next-line:variable-name
+      const loading_screen: any = this.util.showPleaseWait()
 
       this.vendedoresService.initFirebase().then(res => {
-        return this.vendedoresService.getOrdenesVendedores();
-      }).then( res => {
-        console.log('Consulta-Info Ordenes por vendedor', res);
-        this.source.load(res);
-        loading_screen.finish();
-      }).catch( err => {
-        loading_screen.finish();
-        console.error('La puta madre no funciona', err);
-      });
+        return this.vendedoresService.getOrdenesVendedores()
+      }).then(res => {
+        console.log('Consulta-Info Ordenes por vendedor', res)
+        this.source.load(res)
+        loading_screen.finish()
+      }).catch(err => {
+        loading_screen.finish()
+        console.error('La puta madre no funciona', err)
+      })
     }
   }
 
-
-  private onUserRowSelect(evt): void {
-    console.log('El buen evento', evt);
+  private onUserRowSelect (evt): void {
+    console.log('El buen evento', evt)
     this.router.navigate(['pages/ordenes', evt.data.vendedorData.uid], {
-      queryParams: evt.data.vendedorData,
-    });
+      queryParams: evt.data.vendedorData
+    })
   }
 
-  private reloadGrid(): void {
-    const loading_screen: any = this.util.showPleaseWait();
-    this.vendedoresService.getOrdenesVendedores().then( res => {
-      console.log('Consulta-Info Ordenes por vendedor', res);
-      this.source.load(res);
-      loading_screen.finish();
-    }).catch( err => {
-      loading_screen.finish();
-      console.error('La puta madre no funciona', err);
-    });
+  private reloadGrid (): void {
+    // tslint:disable-next-line:variable-name
+    const loading_screen: any = this.util.showPleaseWait()
+    this.vendedoresService.getOrdenesVendedores().then(res => {
+      console.log('Consulta-Info Ordenes por vendedor', res)
+      this.source.load(res)
+      loading_screen.finish()
+    }).catch(err => {
+      loading_screen.finish()
+      console.error('La puta madre no funciona', err)
+    })
   }
 
 }

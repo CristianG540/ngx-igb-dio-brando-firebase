@@ -1,11 +1,11 @@
-import { NbMenuItem } from '@nebular/theme';
+import { NbMenuItem } from '@nebular/theme'
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Inicio',
     icon: 'nb-home',
     link: '/pages/dashboard',
-    home: true,
+    home: true
   },
   {
     title: 'Clientes',
@@ -14,17 +14,17 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Buscar cliente',
-        link: '/pages/clientes/buscar-cliente',
+        link: '/pages/clientes/buscar-cliente'
       },
       {
         title: 'Consultar cartera',
-        link: '/pages/clientes/consultar-cartera',
+        link: '/pages/clientes/consultar-cartera'
       },
       {
         title: 'Mapa clientes',
-        link: '/pages/clientes/mapa-clientes',
-      },
-    ],
+        link: '/pages/clientes/mapa-clientes'
+      }
+    ]
   },
   {
     title: 'Auth',
@@ -32,20 +32,20 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: 'Login',
-        link: '/auth/login',
+        link: '/auth/login'
       },
       {
         title: 'Register',
-        link: '/auth/register',
+        link: '/auth/register'
       },
       {
         title: 'Request Password',
-        link: '/auth/request-password',
+        link: '/auth/request-password'
       },
       {
         title: 'Reset Password',
-        link: '/auth/reset-password',
-      },
-    ],
-  },
-];
+        link: '/auth/reset-password'
+      }
+    ]
+  }
+]
