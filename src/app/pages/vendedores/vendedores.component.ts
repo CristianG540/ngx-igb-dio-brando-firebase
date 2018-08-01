@@ -43,7 +43,7 @@ export class VendedoresComponent {
       },
       idAsesor: {
         title: 'Id Asesor',
-        type: 'string'
+        type: 'html'
       },
       numOrdenes: {
         title: 'Ordenes',

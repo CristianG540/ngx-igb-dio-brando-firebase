@@ -226,7 +226,7 @@ export class VendedorService {
         } else {
           this._lkOrdenesInfoTbl.insert({
             'vendedor': this.vendedores[vendedorKey].username,
-            'idAsesor': this.vendedores[vendedorKey].idAsesor ? this.vendedores[vendedorKey].idAsesor : 'Inactivo',
+            'idAsesor': this.vendedores[vendedorKey].idAsesor ? this.vendedores[vendedorKey].idAsesor : `<span class="badge badge-danger">Inactivo</span>`,
             'vendedorData': this.vendedores[vendedorKey],
             'numOrdenes': 0,
             'numOrdenesErr': 0,
