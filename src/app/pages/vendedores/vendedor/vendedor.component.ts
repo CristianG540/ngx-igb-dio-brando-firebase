@@ -105,8 +105,6 @@ export class VendedorComponent implements OnInit, OnDestroy {
         console.error('Me cago en la puta errror', err);
       });
 
-
-
     });
   }
 

@@ -77,7 +77,7 @@ export class VendedorService {
     return firebase.database().ref('users/').once('value').then(res => {
       this.vendedores = res.val();
       return this.vendedores;
-    })
+    });
   }
 
   public async  getAllVendedores(): Promise<string[]> {
@@ -124,7 +124,7 @@ export class VendedorService {
 
     if (ids) {
       const ordenes = [];
-      for( const id of ids ) {
+      for ( const id of ids ) {
         const orden = await firebase.database().ref(`orders/${this._vendedor}/${id}`).once('value');
         ordenes.push( orden.val() );
       }
@@ -199,6 +199,7 @@ export class VendedorService {
 
     try {
 
+      // tslint:disable-next-line:forin
       for (const vendedorKey in this.vendedores) {
 
         const result = await firebase.database().ref(`orders/${this.vendedores[vendedorKey].uid}`).once('value');
@@ -211,6 +212,7 @@ export class VendedorService {
         if (result.val()) {
 
           const ordenes = result.val();
+          // tslint:disable-next-line:forin
           for (const ordenKey in ordenes) {
             /**
              * si un pedido no tiene docEntry esta variable pasa a ser "true",
@@ -226,7 +228,7 @@ export class VendedorService {
               ordenesErr.push(ordenes[ordenKey]);
             }
             // Verifico si la orden esta pendiente y no tiene errores
-            if (hasntDocEntry && String(ordenes[ordenKey].estado) != 'uploaded') {
+            if (hasntDocEntry && String(ordenes[ordenKey].estado) !== 'uploaded') {
               if (!hasError) {
                 ordenesPend.push(ordenes[ordenKey]);
               }
@@ -242,6 +244,7 @@ export class VendedorService {
 
           this._lkOrdenesInfoTbl.insert({
             'vendedor': this.vendedores[vendedorKey].username,
+            'idAsesor': this.vendedores[vendedorKey].idAsesor,
             'vendedorData': this.vendedores[vendedorKey],
             'numOrdenes': Object.keys(ordenes).length,
             'numOrdenesErr': htmlErrores,
@@ -249,12 +252,21 @@ export class VendedorService {
             'numOrdenesVistas': ordenesVistas.length,
           });
 
+        } else {
+          this._lkOrdenesInfoTbl.insert({
+            'vendedor': this.vendedores[vendedorKey].username,
+            'idAsesor': this.vendedores[vendedorKey].idAsesor ? this.vendedores[vendedorKey].idAsesor : 'Inactivo',
+            'vendedorData': this.vendedores[vendedorKey],
+            'numOrdenes': 0,
+            'numOrdenesErr': 0,
+            'numOrdenesPend': 0,
+            'numOrdenesVistas': 0,
+          });
         }
 
       }
 
     } catch (err) {
-      debugger
       console.error('error al recuperar las ordenes de los vendedores', err);
       window.alert('Error al recuperar las ordenes de los vendedores');
     }
@@ -305,18 +317,18 @@ export class VendedorService {
 
     const ordenRef: AngularFireObject<any> = this.angularFireDB.object(`orders/${this._vendedor}/${idDoc}`);
 
-    if(estado == 'uploaded'){
+    if (estado === 'uploaded'){
       return await ordenRef.update({
         updated_at: Date.now().toString(),
         estado: estado,
-        error: ''
-      })
+        error: '',
+      });
     }
 
     return await ordenRef.update({
       updated_at: Date.now().toString(),
-      estado: estado
-    })
+      estado: estado,
+    });
 
   }
 

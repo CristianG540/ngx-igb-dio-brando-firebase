@@ -19,15 +19,15 @@ export class AppComponent implements OnInit {
   constructor(
     private analytics: AnalyticsService,
     private angularFireAuth: AngularFireAuth,
-    private angularFireDB: AngularFireDatabase
+    private angularFireDB: AngularFireDatabase,
   ) {
 
     this.angularFireAuth.auth.signInAndRetrieveDataWithEmailAndPassword(
       'desarrollowebigb@gmail.com',
-      '123456'
+      '123456',
     ).then(res => {
       console.log('Info login firebase', res);
-    }).catch(err => console.error('Error login firebase', err))
+    }).catch(err => console.error('Error login firebase', err));
 
   }
 

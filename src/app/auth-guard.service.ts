@@ -12,7 +12,7 @@ export class AuthGuard implements CanActivate {
     private router: Router,
   ) {}
 
-  /* canActivate() {
+  canActivate() {
     // canActive can return Observable<boolean>, which is exactly what isAuhenticated returns
     return this.authService.isAuthenticated()
     .do(authenticated => {
@@ -20,5 +20,5 @@ export class AuthGuard implements CanActivate {
           this.router.navigate(['auth/login']);
         }
       });
-  } */
+  }
 }

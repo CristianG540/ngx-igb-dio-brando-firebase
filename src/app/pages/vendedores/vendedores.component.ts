@@ -38,7 +38,11 @@ export class VendedoresComponent  {
     },
     columns: {
       vendedor: {
-        title: 'Asesor',
+        title: 'Usuario',
+        type: 'string',
+      },
+      idAsesor: {
+        title: 'Id Asesor',
         type: 'string',
       },
       numOrdenes: {
@@ -90,7 +94,7 @@ export class VendedoresComponent  {
   private onUserRowSelect(evt): void {
     console.log('El buen evento', evt);
     this.router.navigate(['pages/ordenes', evt.data.vendedorData.uid], {
-      queryParams: evt.data.vendedorData
+      queryParams: evt.data.vendedorData,
     });
   }
 
