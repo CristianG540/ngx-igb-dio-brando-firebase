@@ -214,7 +214,7 @@ export class VendedorService {
           }
 
           this._lkOrdenesInfoTbl.insert({
-            'vendedor': this.vendedores[vendedorKey].username,
+            'vendedor': this.vendedores[vendedorKey].email,
             'idAsesor': this.vendedores[vendedorKey].idAsesor,
             'vendedorData': this.vendedores[vendedorKey],
             'numOrdenes': Object.keys(ordenes).length,
@@ -225,7 +225,7 @@ export class VendedorService {
 
         } else {
           this._lkOrdenesInfoTbl.insert({
-            'vendedor': this.vendedores[vendedorKey].username,
+            'vendedor': this.vendedores[vendedorKey].email,
             'idAsesor': this.vendedores[vendedorKey].idAsesor ? this.vendedores[vendedorKey].idAsesor : `<span class="badge badge-danger">Inactivo</span>`,
             'vendedorData': this.vendedores[vendedorKey],
             'numOrdenes': 0,

@@ -99,8 +99,9 @@ export class VendedoresComponent {
   }
 
   private reloadGrid (): void {
+    window.location.reload()
     // tslint:disable-next-line:variable-name
-    const loading_screen: any = this.util.showPleaseWait()
+    /*const loading_screen: any = this.util.showPleaseWait()
     this.vendedoresService.getOrdenesVendedores().then(res => {
       console.log('Consulta-Info Ordenes por vendedor', res)
       this.source.load(res)
@@ -108,7 +109,7 @@ export class VendedoresComponent {
     }).catch(err => {
       loading_screen.finish()
       console.error('La puta madre no funciona', err)
-    })
+    })*/
   }
 
 }
