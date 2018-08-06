@@ -145,6 +145,7 @@ export class VendedorComponent implements OnInit, OnDestroy {
         await this.vendedoresService.updateUserData({
           idAsesor : idAsesor
         })
+
         Swal({
           title: 'Activado!',
           text: 'El usuario ha sido activado con exito.',
@@ -152,7 +153,7 @@ export class VendedorComponent implements OnInit, OnDestroy {
         })
 
         this._IdAsesor = idAsesor
-        this.vendedoresService.updateIdAsesor(this._params.username, idAsesor)
+        this.vendedoresService.updateIdAsesor(this._params.email, idAsesor)
         this.location.back()
 
       } catch (error) {
