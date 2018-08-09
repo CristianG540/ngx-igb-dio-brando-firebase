@@ -132,7 +132,7 @@ export class VendedorService {
       if (String(orden.estado) === 'seen') { statusOrder = '<span class="badge badge-info">Revisado</span>' }
       if (String(orden.estado) === 'uploaded') { statusOrder = '<span class="badge badge-success">Procesado</span>' }
       // tslint:disable-next-line:max-line-length
-      const ubicacion: string =  _.has(orden, 'accuracy') ? '<span class="badge badge-success">Si</span>' : '<span class="badge badge-danger">No</span>'
+      const ubicacion: string = _.has(orden, 'accuracy') ? '<span class="badge badge-success">Si</span>' : '<span class="badge badge-danger">No</span>'
 
       return {
         id         : orden._id,
