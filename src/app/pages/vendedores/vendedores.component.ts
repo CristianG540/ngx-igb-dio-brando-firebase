@@ -51,7 +51,7 @@ export class VendedoresComponent {
       },
       numOrdenesErr: {
         title: 'Errores',
-        type: 'html'
+        type: 'number'
       },
       numOrdenesPend: {
         title: 'Pendientes',

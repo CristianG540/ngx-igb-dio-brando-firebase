@@ -175,7 +175,7 @@ export class VendedorService {
 
         const result = await firebase.database().ref(`orders/${this.vendedores[vendedorKey].uid}`).once('value')
 
-        let htmlErrores = '0' // aqui guardo un html q basicamente en capsula el numero de errores en un badge
+        // let htmlErrores = '0' // aqui guardo un html q basicamente en capsula el numero de errores en un badge
         const ordenesErr = [] // aqui guardo las ordenes que tienen errores de cada vendedor
         const ordenesPend = [] // aqui guardo las ordenes pendientes, osea las ordenes que aun no se han enviado a sap
         const ordenesVistas = [] // guardo las ordenes marcadas como vistas en la pag de administrador dio-brando
@@ -209,16 +209,16 @@ export class VendedorService {
 
           }
 
-          if (ordenesErr.length - ordenesVistas.length > 0) {
+          /* if (ordenesErr.length - ordenesVistas.length > 0) {
             htmlErrores = `<span class="badge badge-danger">${ordenesErr.length - ordenesVistas.length}</span>`
-          }
+          } */
 
           this._lkOrdenesInfoTbl.insert({
             'vendedor': this.vendedores[vendedorKey].email,
             'idAsesor': this.vendedores[vendedorKey].idAsesor,
             'vendedorData': this.vendedores[vendedorKey],
             'numOrdenes': Object.keys(ordenes).length,
-            'numOrdenesErr': htmlErrores,
+            'numOrdenesErr': ordenesErr.length - ordenesVistas.length,
             'numOrdenesPend': ordenesPend.length,
             'numOrdenesVistas': ordenesVistas.length
           })
